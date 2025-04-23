@@ -21,6 +21,7 @@ public class Board {
      */
     public Board(Board other) {
         this.checkerBoard = null;
+        checkerBoard[0][0] = new Pawn(1);
     }
 
     /**
