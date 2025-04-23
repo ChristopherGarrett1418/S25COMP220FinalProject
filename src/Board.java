@@ -20,7 +20,6 @@ public class Board {
      * @param other
      */
     public Board(Board other) {
-        //TODO: Make sure this makes a deep copy when implementing
         this.checkerBoard = null;
     }
 
