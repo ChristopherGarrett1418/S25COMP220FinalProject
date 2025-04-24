@@ -10,8 +10,39 @@ public class Board {
      * Sets checkerboard
      */
     public Board() {
-        //TODO: implement this constructor
-        this.checkerBoard = null;
+        // these are initializing the first board to where the pawns are on team
+        // 1 and then team 2. The starting positions are identical for each player, meaning
+        // they are not strictly mirrored.
+        checkerBoard[0][0] = new Pawn(1);
+        checkerBoard[0][2] = new Pawn(1);
+        checkerBoard[1][1] = new Pawn(1);
+        checkerBoard[2][0] = new Pawn(1);
+        checkerBoard[2][2] = new Pawn(1);
+        checkerBoard[3][1] = new Pawn(1);
+        checkerBoard[4][0] = new Pawn(1);
+        checkerBoard[4][2] = new Pawn(1);
+        checkerBoard[5][1] = new Pawn(1);
+        checkerBoard[6][0] = new Pawn(1);
+        checkerBoard[6][2] = new Pawn(1);
+        checkerBoard[7][1] = new Pawn(1);
+
+        // now for team 2:
+        checkerBoard[0][6] = new Pawn(2);
+        checkerBoard[1][5] = new Pawn(2);
+        checkerBoard[1][7] = new Pawn(2);
+        checkerBoard[2][6] = new Pawn(2);
+        checkerBoard[3][5] = new Pawn(2);
+        checkerBoard[3][7] = new Pawn(2);
+        checkerBoard[4][6] = new Pawn(2);
+        checkerBoard[5][5] = new Pawn(2);
+        checkerBoard[5][7] = new Pawn(2);
+        checkerBoard[6][6] = new Pawn(2);
+        checkerBoard[7][5] = new Pawn(2);
+        checkerBoard[7][7] = new Pawn(2);
+
+
+      //  this.checkerBoard = null;
+        // do we need this?
     }
 
     /**
@@ -31,7 +62,9 @@ public class Board {
      * @return boolean for whether there is a piece
      */
     public boolean checkPlace(int row, int col) {
-        //TODO: implement method
+        if((checkerBoard[row][col].getTeam() == 1)|| (checkerBoard[row][col].getTeam() == 2) ){
+            return true;
+        }
         return false;
     }
 
@@ -74,8 +107,18 @@ public class Board {
      * @param piece
      */
     private void kingMe(Checker piece) {
+        if((piece.getTeam() == 2  && (checkerBoard[0].getTeam() == 1)) ||
+                ((piece.getTeam() == 1)  && (checkerBoard[7].getTeam() == 1))){
+            piece = new King(piece.getTeam());
+            // this is a bit of hardcoding, just saying if my piece ever reaches your side
+            // it becomes king. Might need to revise for efficiency or special cases
+        }
+        else{
+            piece = new Pawn(piece.getTeam());
+        }
         //TODO: implement method
         Checker tears = null;
+        // what is this above? looks cool.
     }
 
     /**
