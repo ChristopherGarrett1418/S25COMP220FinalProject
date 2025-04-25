@@ -11,7 +11,9 @@ public class King extends Checker{
 
     @Override
     public boolean canJump(Checker[][] checkerBoard) {
-        //TODO: implement method
+        Checker King1 = new King(1);
+        Checker King2 = new King(2);
+        if(checkerBoard[King2.g-1])
         return false;
     }
 

@@ -126,4 +126,9 @@ public class Board {
      * @return
      */
     public Board newCopy() { return new Board(this);}
+
+
+// TODO This IS A NEW METHOD. GOTTA DOCUMENT IT.
+public int[] pieceLocation(Checker piece) {
+
 }
