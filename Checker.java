@@ -24,6 +24,7 @@ public abstract class Checker {
      * @return int for specifc team number
      */
     public int getTeam() {
+
         return this.team;
     }
 

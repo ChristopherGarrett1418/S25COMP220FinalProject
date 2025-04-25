@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Representation of a checkerboard and its pieces. This class will not play the
  * game itself but will have methods for key features of playing checkers.
@@ -41,13 +43,14 @@ public class Board {
         checkerBoard[7][7] = new Pawn(2);
 
 
-      //  this.checkerBoard = null;
+        //  this.checkerBoard = null;
         // do we need this?
     }
 
     /**
      * Copy constructor for checkerboard, allows us to store previous boards to
      * take moves back
+     *
      * @param other
      */
     public Board(Board other) {
@@ -57,12 +60,13 @@ public class Board {
 
     /**
      * Checks location for a piece and determines whether there is one there
+     *
      * @param row of desired location player is selecting
      * @param col of desired location player is selecting
      * @return boolean for whether there is a piece
      */
     public boolean checkPlace(int row, int col) {
-        if((checkerBoard[row][col].getTeam() == 1)|| (checkerBoard[row][col].getTeam() == 2) ){
+        if ((checkerBoard[row][col].getTeam() == 1) || (checkerBoard[row][col].getTeam() == 2)) {
             return true;
         }
         return false;
@@ -72,8 +76,9 @@ public class Board {
      * Selects desired piece at a location if a piece actually is there and
      * piece is the correct team.
      * This method is dependent on the checkPlace method.
-     * @see checkPlace(int row, int col)
+     *
      * @param piece
+     * @see checkPlace(int row, int col)
      */
     public void selectPiece(Checker piece) {
         //TODO: implement method
@@ -82,6 +87,7 @@ public class Board {
 
     /**
      * updates board and moves piece
+     *
      * @param piece
      */
     public void move(Checker piece) {
@@ -93,6 +99,7 @@ public class Board {
      * Removes pieces that were jumped over by opposing team
      * searches through 2D array to find piece that needs to be removed.
      * Assigns element at that location with null.
+     *
      * @param piece checker piece that is going to be removed
      */
     public void expel(Checker piece) {
@@ -104,16 +111,16 @@ public class Board {
      * will reassign the piece with a king checker piece. This method will work a certain
      * way depending on what team is moving.
      * If the piece isn't kingable, then returns the same piece sent to the method
+     *
      * @param piece
      */
     private void kingMe(Checker piece) {
-        if((piece.getTeam() == 2  && (checkerBoard[0].getTeam() == 1)) ||
-                ((piece.getTeam() == 1)  && (checkerBoard[7].getTeam() == 1))){
+        if ((piece.getTeam() == 2 && (checkerBoard[0].getTeam() == 1)) ||
+                ((piece.getTeam() == 1) && (checkerBoard[7].getTeam() == 1))) {
             piece = new King(piece.getTeam());
             // this is a bit of hardcoding, just saying if my piece ever reaches your side
             // it becomes king. Might need to revise for efficiency or special cases
-        }
-        else{
+        } else {
             piece = new Pawn(piece.getTeam());
         }
         //TODO: implement method
@@ -123,12 +130,28 @@ public class Board {
 
     /**
      * Creates a new copy of checkerboard so we can keep track of previous boards
+     *
      * @return
      */
-    public Board newCopy() { return new Board(this);}
+    public Board newCopy() {
+        return new Board(this);
+    }
 
 
-// TODO This IS A NEW METHOD. GOTTA DOCUMENT IT.
-public int[] pieceLocation(Checker piece) {
-
+    /**
+     * @param piece
+     * @return an arrayLIst containing the x and y coordinate of the piece
+     */
+    public ArrayList pieceLocation(Checker piece) {
+        ArrayList<Integer> xAndY = new ArrayList<>();
+        for (int i = 0; i < checkerBoard.length-2; i++) {
+            for (int k = 0; k < checkerBoard.length-2; k++) {
+                if(checkerBoard[i][k] == piece){
+                    xAndY.add(i);
+                    xAndY.add(k);
+                }
+            }
+        }
+        return xAndY;
+    }
 }
